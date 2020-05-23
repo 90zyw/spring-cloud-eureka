@@ -1,0 +1,36 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: cloud-consumer
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7000/eureka/
+  instance:
+    #自定义服务ID名称
+    instance-id: cloud-consumer-8001
+    #显示IP地址
+    prefer-ip-address: true
+#设置openFeign的超时时间, openFeign默认支持ribbon
+ribbon:
+  #建立连接时间
+  ReadTimeout: 5000
+  #建立连接后服务器获取数据时间
+  ConnectTimeout: 5000
+#服务降级开启
+feign:
+  hystrix:
+    enabled: true
+#日志
+logging:
+  level:
+    com:
+      cto:
+        cloud: debug
+    org:
+      springframework:
+        web: info
+  file: log/cloud-consumer.log
+
