@@ -11,6 +11,7 @@
         <module>cloud-consumer</module>
         <module>cloud-eureka</module>
         <module>cloud-provider2</module>
+        <module>cloud-gateway</module>
     </modules>
     <packaging>pom</packaging>
 

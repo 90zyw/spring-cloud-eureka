@@ -1,0 +1,35 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由功能
+      routes:
+        - id: cloud-provider
+          uri: lb://cloud-provider #服务的application.name
+          predicates:
+            - Path=/**
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7000/eureka/
+  instance:
+    hostname: cloud-gateway-service
+
+#日志
+logging:
+  level:
+    com:
+      cto:
+        cloud: debug
+    org:
+      springframework:
+        web: info
+  file: log/cloud-gateway.log
+
